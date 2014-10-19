@@ -17,7 +17,7 @@ bool Luhn::isValid(unsigned long long account_number) {
     }
 
 // Generates the checksum associated with the provided account number
-long Luhn::get_checksum(unsigned long long account_number, bool contains_check_digit) {
+unsigned int Luhn::get_checksum(unsigned long long account_number, bool contains_check_digit) {
 	
 	stringstream streamLong;
 	string string_number;
@@ -42,13 +42,13 @@ long Luhn::get_checksum(unsigned long long account_number, bool contains_check_d
 		}	 
 	}
 	
-	int total = NumberUtilities::summarize_int_vector(numbers);
+	unsigned int total = NumberUtilities::summarize_int_vector(numbers);
 	return total % 10;
 }
 
 // Generates the check digit associated with the provided account number
-long Luhn::get_checkdigit(unsigned long long account_number, bool contains_check_digit) {
-	long checkDigit = get_checksum(account_number * 10, contains_check_digit);
+unsigned int Luhn::get_checkdigit(unsigned long long account_number, bool contains_check_digit) {
+	unsigned int checkDigit = get_checksum(account_number * 10, contains_check_digit);
 	if (checkDigit == 0) {
 		return checkDigit;
 	}else {
@@ -56,6 +56,6 @@ long Luhn::get_checkdigit(unsigned long long account_number, bool contains_check
 	}
 }
 
-long Luhn::get_checkdigit(unsigned long long account_number) {
+unsigned int Luhn::get_checkdigit(unsigned long long account_number) {
 	return get_checkdigit(account_number, false);
 }
