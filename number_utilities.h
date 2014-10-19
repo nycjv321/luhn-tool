@@ -12,8 +12,8 @@ class NumberUtilities  // class declaration
 
 public:
 
-	static vector<int> convertStringToIntVector(string value);
-	static int summarizeIntVector(vector<int> numbers);
+	static vector<int> string_to_int_vector(string value);
+	static int summarize_int_vector(vector<int> numbers);
 }; 
 
 #endif

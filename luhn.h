@@ -12,14 +12,14 @@ using namespace std;
 class Luhn  // class declaration
 {
 private: 
-	static long getCheckSum(unsigned long long accountNumber, bool hasCheckDigit);
+	static long get_checksum(unsigned long long account_number, bool contains_check_digit);
 	
 public:
-    static bool isValid(unsigned long long accountNumber);
-  	static long getCheckDigit(unsigned long long accountNumber, bool hasCheckDigit);
-  	static long getCheckDigit(unsigned long long accountNumber);
-	static vector<int> convertStringToIntVector(string value);
-	static int summarizeIntVector(vector<int> numbers);
+    static bool isValid(unsigned long long account_number);
+  	static long get_checkdigit(unsigned long long account_number, bool contains_check_digit);
+  	static long get_checkdigit(unsigned long long account_number);
+	static vector<int> string_to_int_vector(string value);
+	static int summarize_int_vector(vector<int> numbers);
 }; 
 
 #endif

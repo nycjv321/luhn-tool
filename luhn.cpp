@@ -12,43 +12,43 @@ using namespace std;
 
 // Checks to see if a provided account number is 
 // valid based on the suffix checksum digit
-bool Luhn::isValid(unsigned long long accountNumber) {
-        return getCheckSum(accountNumber, false) == 0;
+bool Luhn::isValid(unsigned long long account_number) {
+        return get_checksum(account_number, false) == 0;
     }
 
 // Generates the checksum associated with the provided account number
-long Luhn::getCheckSum(unsigned long long accountNumber, bool hasCheckDigit) {
+long Luhn::get_checksum(unsigned long long account_number, bool contains_check_digit) {
 	
 	stringstream streamLong;
-	string numberAsString;
-	streamLong  << accountNumber;
-	streamLong >> numberAsString;
-	if (hasCheckDigit) {
-		numberAsString = numberAsString.substr(0, (numberAsString.size() - 1));
+	string string_number;
+	streamLong  << account_number;
+	streamLong >> string_number;
+	if (contains_check_digit) {
+		string_number = string_number.substr(0, (string_number.size() - 1));
 	}
 	
-	vector<int> numbers = NumberUtilities::convertStringToIntVector(numberAsString);
+	vector<int> numbers = NumberUtilities::string_to_int_vector(string_number);
 	
 	for (int i = numbers.size() - 2; i >= 0; i -= 2) {
 		int operation = numbers[i] * 2;
 		if (operation > 9 ) {
 			numbers[i] = 0;
-			string operationAsString = to_string(operation);
-			for (int j = 0; j < operationAsString.size(); ++j) {
-				numbers[i] += atoi(operationAsString.substr(j, j + 1).c_str());
+			string string_operation = to_string(operation);
+			for (int j = 0; j < string_operation.size(); ++j) {
+				numbers[i] += atoi(string_operation.substr(j, j + 1).c_str());
 			}
 		} else {
 			numbers[i] = operation;
 		}	 
 	}
 	
-	int total = NumberUtilities::summarizeIntVector(numbers);
+	int total = NumberUtilities::summarize_int_vector(numbers);
 	return total % 10;
 }
 
 // Generates the check digit associated with the provided account number
-long Luhn::getCheckDigit(unsigned long long accountNumber, bool hasCheckDigit) {
-	long checkDigit = getCheckSum(accountNumber * 10, hasCheckDigit);
+long Luhn::get_checkdigit(unsigned long long account_number, bool contains_check_digit) {
+	long checkDigit = get_checksum(account_number * 10, contains_check_digit);
 	if (checkDigit == 0) {
 		return checkDigit;
 	}else {
@@ -56,6 +56,6 @@ long Luhn::getCheckDigit(unsigned long long accountNumber, bool hasCheckDigit) {
 	}
 }
 
-long Luhn::getCheckDigit(unsigned long long accountNumber) {
-	return getCheckDigit(accountNumber, false);
+long Luhn::get_checkdigit(unsigned long long account_number) {
+	return get_checkdigit(account_number, false);
 }

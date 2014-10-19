@@ -5,7 +5,7 @@
 #include <vector>
 #include "number_utilities.h"
 
-vector<int> NumberUtilities::convertStringToIntVector(string value) {
+vector<int> NumberUtilities::string_to_int_vector(string value) {
 	std::vector<int> integers(value.size());   
 	
 	for (int i = 0 ; i < value.size(); ++i) {
@@ -14,7 +14,7 @@ vector<int> NumberUtilities::convertStringToIntVector(string value) {
 	return integers;
 }
 
-int NumberUtilities::summarizeIntVector(vector<int> numbers) {
+int NumberUtilities::summarize_int_vector(vector<int> numbers) {
 	int total = 0;
 	
 	for (int i = 0; i < numbers.size(); ++i) {
