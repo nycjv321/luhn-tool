@@ -12,12 +12,12 @@ using namespace std;
 
 // Checks to see if a provided account number is 
 // valid based on the suffix checksum digit
-bool Luhn::isValid(unsigned long long account_number) {
-        return get_checksum(account_number, false) == 0;
+bool Luhn::is_valid(unsigned long long account_number) {
+        return checksum(account_number, false) == 0;
     }
 
 // Generates the checksum associated with the provided account number
-unsigned int Luhn::get_checksum(unsigned long long account_number, bool contains_check_digit) {
+unsigned int Luhn::checksum(unsigned long long account_number, bool contains_check_digit) {
 	
 	stringstream streamLong;
 	string string_number;
@@ -47,8 +47,8 @@ unsigned int Luhn::get_checksum(unsigned long long account_number, bool contains
 }
 
 // Generates the check digit associated with the provided account number
-unsigned int Luhn::get_checkdigit(unsigned long long account_number, bool contains_check_digit) {
-	unsigned int checkDigit = get_checksum(account_number * 10, contains_check_digit);
+unsigned int Luhn::checkdigit(unsigned long long account_number, bool contains_check_digit) {
+	unsigned int checkDigit = checksum(account_number * 10, contains_check_digit);
 	if (checkDigit == 0) {
 		return checkDigit;
 	}else {
@@ -56,6 +56,10 @@ unsigned int Luhn::get_checkdigit(unsigned long long account_number, bool contai
 	}
 }
 
-unsigned int Luhn::get_checkdigit(unsigned long long account_number) {
-	return get_checkdigit(account_number, false);
+unsigned int Luhn::checkdigit(unsigned long long account_number) {
+	return checkdigit(account_number, false);
+}
+
+unsigned int Luhn::checkdigit(string account_number) {
+	return checkdigit(std::stoull(account_number.c_str()), false);
 }
